@@ -33,7 +33,7 @@ int main(void)
     // SW1 --- PA18, Index 39. Pull-down only
     // SW2 --- PB21, Index 48. Pull-Up only
 
-    IOMUX->SECCFG.PINCM[0] = 0x81 // ;PA0
+    IOMUX->SECCFG.PINCM[0] = 0x81; // PA0
     IOMUX->SECCFG.PINCM[49] = 0x00100081; // PB22
 
     IOMUX->SECCFG.PINCM[48] = 0x00060081;         // PB2 onboard switch 2. (SW2 is PULL-UP ONLY)
