@@ -71,6 +71,8 @@ One hexadecimal digit represents 4 bits (a nibble). This makes it compact and re
 
 ![alt text](https://github.com/amedina64/LP-MSPM0G3507-Micro1-Labs/blob/main/images/PINCM_TRM_1.png)
 
+![alt text](https://github.com/amedina64/LP-MSPM0G3507-Micro1-Labs/blob/main/images/PINCM_TRM_2.png)
+
         Bit 18 (INENA) is set to 1
             i.e. input enabled
         Bit 17 (PIPU) is set to 1
