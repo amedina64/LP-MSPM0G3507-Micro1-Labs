@@ -56,7 +56,7 @@
 ## **Hexadecimal Representation and Pin Configuration**
 In embedded systems, hexadecimal representation is commonly used to configure registers. Registers often consist of 32 bits (4 bytes), and each bit controls a specific feature or behavior.
 
-One hexadecimal digit represents 4 bits (a nibble). This makes it compact and readable format for binary values/
+One hexadecimal digit represents 4 bits (a nibble). This makes it compact and readable format for binary values.
 
     - Example
 
