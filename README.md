@@ -13,6 +13,7 @@ This repository contains code examples of _Texas Instruments MSPM0G3507 Microcon
 ## Development
 
 ## License
+[This repo has an MIT license.](../main/LICENSE)
 
 ## Authors:
 - Alejandro Medina
