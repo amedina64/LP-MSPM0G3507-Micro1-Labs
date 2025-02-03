@@ -1,5 +1,5 @@
 #include "ti/devices/msp/m0p/mspm0g350x.h"
-#include "ti/driverlib/dl_common.h"
+#include "ti/driverlib/dl_common.h" // For DL_Common_delayCycles function
 
 int main(void)
 {
@@ -26,8 +26,8 @@ int main(void)
     */
 
     // onboard leds
-    // PA0 --- PA0 --- LED1
-    // LED02 (RGB) --- PB22 [BLUE]
+    // LED01 [Red only] --- PA0 --- index 0
+    // LED02 [RGB] --- PB22 [Only Using Blue LED in this example] --- Index 49
 
     // Onboard Switches 
     // SW1 --- PA18, Index 39. Pull-down only
@@ -36,8 +36,8 @@ int main(void)
     IOMUX->SECCFG.PINCM[0] = 0x81; // PA0
     IOMUX->SECCFG.PINCM[49] = 0x00100081; // PB22
 
-    IOMUX->SECCFG.PINCM[48] = 0x00060081;         // PB2 onboard switch 2. (SW2 is PULL-UP ONLY)
-    IOMUX->SECCFG.PINCM[39] = 0x00050081;         // SW1 in pull down configuration
+    IOMUX->SECCFG.PINCM[48] = 0x00060081;         // PB21. Onboard switch 2. (SW2 is PULL-UP ONLY)
+    IOMUX->SECCFG.PINCM[39] = 0x00050081;         // PA18. Onboarad switch 1 (SW1 in PULL-UP configuration only)
     GPIOA->DOE31_0 |= (1 << 0);                   // set doe register to enable peripheral (1 means using mode 1 or GPIO)
     GPIOB->DOE31_0 |= (1 << 22);
 
