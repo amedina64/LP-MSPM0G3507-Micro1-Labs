@@ -69,7 +69,7 @@ One hexadecimal digit represents 4 bits (a nibble). This makes it compact and re
         0x00060081 = 0000 0000 0000 0110 0000 0000 1000 0001
         Now what do the binary values mean? According to the technical reference manual.
 
-        ![alt text](images/PINCM_TRM_1.png)
+![alt text](images/PINCM_TRM_1.png)
 
         Bit 18 (INENA) is set to 1
             i.e. input enabled
