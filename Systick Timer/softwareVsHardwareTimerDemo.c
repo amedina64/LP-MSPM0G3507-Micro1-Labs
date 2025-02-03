@@ -7,11 +7,12 @@
 
 #define RED_LED_PIN 0
 #define BLUE_LED_PIN 22
-#define SYSTICK_LOAD_VALUE 3200000  // 100ms delay @ 32MHz
+#define SYSTICK_LOAD_VALUE 3200000
 
 volatile uint8_t tics = 0;
 
-void init_ports() {
+void init_Ports() 
+{
     // Reset and power up GPIO ports A and B
     GPIOA->GPRCM.RSTCTL = 0xB1000003;
     GPIOB->GPRCM.RSTCTL = 0xB1000003;
@@ -22,8 +23,9 @@ void init_ports() {
     DL_Common_delayCycles(24);
 }
 
-int main(void) {
-    init_ports();
+int main(void) 
+{
+    init_Ports();
 
     // Configure pins for output
     IOMUX->SECCFG.PINCM[PA0INDEX] = 0x81;
@@ -31,25 +33,29 @@ int main(void) {
     GPIOA->DOE31_0 |= (1 << RED_LED_PIN);
     GPIOB->DOE31_0 |= (1 << BLUE_LED_PIN);
 
-    // Initialize SysTick Timer
+    // Initialize SysTick Timer. Enable systick on the LAST step.
+
     SysTick->CTRL = 0;
-    SysTick->LOAD = SYSTICK_LOAD_VALUE;  
-    SysTick->VAL = 0;
-    SysTick->CTRL = 0x07;  // Enable with interrupt
+	SysTick->VAL = 0;	
+	SysTick->LOAD = 3200000; // 3200000/32MHz - > 0.1s -> 100ms
+    SysTick->CTRL = 0x07;	// 1       1       1    ->  0x07, start timer
 
     // Set interrupt priority for SysTick (lowest priority)
     SCB->SHP[1] = (SCB->SHP[1] & ~0xC0000000) | (1 << 30);
 
-    while (1) {
+    while (1) 
+    {
         // Toggle red LED every second
         GPIOA->DOUT31_0 ^= (1 << RED_LED_PIN);
         DL_Common_delayCycles(32000000);  // 1-second delay
     }
 }
 
-void SysTick_Handler() {
+void SysTick_Handler() 
+{
     // Toggle blue LED every 2 seconds
-    if (++tics >= 20) {
+    if (++tics >= 20) 
+    {
         GPIOB->DOUTTGL31_0 ^= (1 << BLUE_LED_PIN);
         tics = 0;
     }
