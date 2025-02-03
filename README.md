@@ -7,6 +7,7 @@ This repository contains code examples of _Texas Instruments MSPM0G3507 Microcon
 - [Prerequisites](../main/Prerequisites)
 - [Resources](../main/Resources)
 - [GPIO](../main/GPIO)
+- [SysTick Timer](../main/Systick%20Timer)
 
 ## Development
 
