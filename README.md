@@ -4,11 +4,9 @@ This repository contains code examples of _Texas Instruments MSPM0G3507 Microcon
 
 
 ## Table of Contents
-- [IDE Setup]()
-- To Do
-
-## Resources
-- To Do
+- [Prerequisites](../main/Prerequisites)
+- [Resources](../main/Resources)
+- [GPIO](../main/GPIO)
 
 ## Development
 
@@ -16,8 +14,8 @@ This repository contains code examples of _Texas Instruments MSPM0G3507 Microcon
 [This repo has an MIT license.](../main/LICENSE)
 
 ## Authors:
-- Alejandro Medina
+- **Alejandro Medina** _B.S. Electrical Engineering Spring 2024_ (Current MS Computer Engineering Student @ **_The University of Texas at El Paso_**)
 
 ```c
-printf("If you are reading this, then hi. Go Miners!"\n);
+  printf("If you are reading this, then hi. Go Miners!"\n);
 ```
