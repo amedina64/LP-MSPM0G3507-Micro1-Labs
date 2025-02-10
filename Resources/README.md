@@ -8,3 +8,4 @@
 6. [LP-MSPM0G3507 User's Guide](../Resources/LP_MSPM0G3507_users_guide.pdf)
 7. [LP-MSPM0G3507 Data Sheet](../Resources/data%20sheet%20mspm0g3507.pdf)
 8. [Dr. Valvano's Website regarding the MSPM0+](https://users.ece.utexas.edu/~valvano/mspm0/)
+9. Cortex-M0+ Devices Generic User Guide https://developer.arm.com/documentation/dui0662/b?lang=en

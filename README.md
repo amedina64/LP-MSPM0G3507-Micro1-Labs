@@ -7,7 +7,9 @@ This repository contains code examples of _Texas Instruments MSPM0G3507 Microcon
 - [Prerequisites](../main/Prerequisites)
 - [Resources](../main/Resources)
 - [GPIO](../main/GPIO)
+- [Interrupts - Event Driven](../main/Interrupts%20-%20Event-Driven)
 - [SysTick Timer](../main/Systick%20Timer)
+- [Universal Asynchronous Receiver Transmitter](../main/UART)
 
 ## Development
 
