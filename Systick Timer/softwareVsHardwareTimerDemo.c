@@ -5,6 +5,7 @@
 // Toggle blue and red LEDs with different timing intervals
 // Red LED toggles every second in main loop, blue LED toggles via interrupt every 2 seconds
 
+
 #define RED_LED_PIN 0
 #define BLUE_LED_PIN 22
 #define SYSTICK_LOAD_VALUE 3200000
