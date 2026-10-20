@@ -1,9 +1,9 @@
 #include "ti/devices/msp/m0p/mspm0g350x.h"
-#include "ti_msp_dl_config.h"
+#include "ti/driverlib/dl_common.h"
 #include "IndexMacros.h"
 
-#define UART_TX_READY (UART0->STAT & 0x80)  // TX FIFO full flag
-#define UART_RX_READY (UART0->STAT & 0x04)  // RX data available flag
+#define UART_TX_READY (UART0->STAT & 0x80)      // STAT.TXFF: TX FIFO full
+#define UART_RX_FIFO_EMPTY (UART0->STAT & 0x04) // STAT.RXFE: RX FIFO empty
 
 void UART_SendString(const char *str);
 void UART_OutChar(char data);
@@ -15,6 +15,7 @@ int main(void)
     GPIOA->GPRCM.PWREN = 0x26000001;
     GPIOB->GPRCM.RSTCTL = 0xB1000003;
     GPIOB->GPRCM.PWREN = 0x26000001;
+    DL_Common_delayCycles(24);
 
     // --- Configure Switches ---
     // Configure SW2 (PB21 - Pull-up falling edge trigger)
@@ -23,7 +24,7 @@ int main(void)
     GPIOB->CPU_INT.ICLR = 0x00200000;              // Clear any pending interrupt on PB21
     GPIOB->CPU_INT.IMASK = 0x00200000;             // Enable interrupt for PB21
     NVIC->IP[0] = (NVIC->IP[0] & (~0x0000FF00)) | (2 << 14);  // Priority for IRQ1 (Group1)
-    NVIC->ISER[0] = 1 << 1;                                   // Enable interrupt for Group1
+    NVIC->ISER[0] = 1 << 1;                                   // Enable GROUP1 (GPIOA and GPIOB)
 
     // --- Configure UART0 ---
     // Assumptions: 32 MHz and 115200 Baud Rate
@@ -42,12 +43,6 @@ int main(void)
     UART0->LCRH = 0x00000030;  // 8 data bits, no parity, 1 stop bit
     UART0->CTL0 = 0x00020019;  // Enable UART and transmit
 
-
-    // Enable NVIC for GPIO interrupt (Group 1, IRQ17)
-    NVIC->ICPR[0] = (1 << 17);         // Clear pending interrupt
-    NVIC->ISER[0] = (1 << 17);         // Enable interrupt for IRQ17
-    NVIC->IP[17] = (NVIC->IP[17] & (~0xFF000000)) | (2 << 30);  // Priority 2
-    
     __enable_irq();
 
     while (1) 

@@ -1,5 +1,5 @@
-#include "ti/driverlib/m0p/dl_interrupt.h"
-#include "ti_msp_dl_config.h"
+#include "ti/devices/msp/m0p/mspm0g350x.h"
+#include "ti/driverlib/dl_common.h"
 #include "IndexMacros.h"
 
 // SW2 (PB21, Pull-up) - Falling edge interrupt, toggles LED1 (PA0)
@@ -36,14 +36,9 @@ int main(void)
     GPIOA->CPU_INT.ICLR = 0x00040000;              // Clear any pending interrupt on PA18
     GPIOA->CPU_INT.IMASK = 0x00040000;             // Enable interrupt for PA18
 
-    // --- Configure NVIC ---
-    // Set priority and enable interrupt for Group 1 (PB21)
+    // GPIOA and GPIOB both raise GROUP1 (IRQ1). GROUP0 is WWDT/DEBUGSS/FLASH/SYSCTL.
     NVIC->IP[0] = (NVIC->IP[0] & (~0x0000FF00)) | (2 << 14);  // Priority for IRQ1 (Group1)
     NVIC->ISER[0] = 1 << 1;                                   // Enable IRQ1 for Group1
-
-    // Set priority and enable interrupt for Group 0 (PA18)
-    NVIC->IP[0] = (NVIC->IP[0] & (~0x000000FF)) | (2 << 6);   // Priority for IRQ0 (Group0)
-    NVIC->ISER[0] = 1 << 0;                                   // Enable IRQ0 for Group0
 
     // Enable global interrupts and enter sleep mode
     __enable_irq();
