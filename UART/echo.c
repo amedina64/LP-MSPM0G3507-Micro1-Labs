@@ -2,8 +2,8 @@
 #include "ti/driverlib/dl_common.h"
 #include "IndexMacros.h"
 
-#define UART_TX_READY (UART0->STAT & 0x80)  // TX FIFO full flag
-#define UART_RX_READY (UART0->STAT & 0x04)  // RX data available flag
+#define UART_TX_READY (UART0->STAT & 0x80)      // STAT.TXFF: TX FIFO full
+#define UART_RX_FIFO_EMPTY (UART0->STAT & 0x04) // STAT.RXFE: RX FIFO empty
 
 void init_Ports() 
 {
@@ -41,7 +41,7 @@ void UART_Init()
 
 char UART_InChar() 
 {
-    while (!(UART_RX_READY));  // Wait until data is available
+    while (UART_RX_FIFO_EMPTY);  // Wait until a byte is received
     return (char)(UART0->RXDATA);
 }
 
