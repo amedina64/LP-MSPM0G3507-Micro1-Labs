@@ -25,7 +25,7 @@ From here we just look at the bits that are enabled and read the manual.
             i.e. Pull-up configuration enabled
         Bit 7 (PC) is set to 1
             i.e. peripheral is connected
-        Bit 1 (PF or Peripheral Function) is set to 1
+        Bit 0 (PF, Peripheral Function) is set, so the PF field value is 1
             i.e. the mode is just a simple GPIO
             
 The other bits are set to 0, meaning those features are disabled
