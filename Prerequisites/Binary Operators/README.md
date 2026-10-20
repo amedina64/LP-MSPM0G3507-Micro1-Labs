@@ -39,7 +39,7 @@
  - Binary XOR
     ~~~c 
     uint8_t x = 1;
-    x ^= x; // toggle the bit
+    x ^= x; // clear the value
     // 0000 0001
     //           ^ -> BIT XOR    
     // 0000 0001 

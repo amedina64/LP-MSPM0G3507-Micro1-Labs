@@ -56,7 +56,7 @@ void SysTick_Handler()
     // Toggle blue LED every 2 seconds
     if (++tics >= 20) 
     {
-        GPIOB->DOUTTGL31_0 ^= (1 << BLUE_LED_PIN);
+        GPIOB->DOUTTGL31_0 = (1 << BLUE_LED_PIN);
         tics = 0;
     }
 }

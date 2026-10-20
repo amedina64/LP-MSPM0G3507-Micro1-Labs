@@ -37,14 +37,14 @@ int main(void)
     IOMUX->SECCFG.PINCM[49] = 0x00100081; // PB22
 
     IOMUX->SECCFG.PINCM[48] = 0x00060081;         // PB21. Onboard switch 2. (SW2 is PULL-UP ONLY)
-    IOMUX->SECCFG.PINCM[39] = 0x00050081;         // PA18. Onboarad switch 1 (SW1 in PULL-UP configuration only)
+    IOMUX->SECCFG.PINCM[39] = 0x00050081;         // PA18. Onboard switch 1 (SW1 is pull-down only)
     GPIOA->DOE31_0 |= (1 << 0);                   // set doe register to enable peripheral (1 means using mode 1 or GPIO)
     GPIOB->DOE31_0 |= (1 << 22);
 
     while (1)
     {
-        // Handle SW1 (pull-down, red LED)
-        if (!(GPIOA->DIN31_0 & (1 << 18)))
+        // Handle SW1 (pull-down, pressed reads high, red LED)
+        if (GPIOA->DIN31_0 & (1 << 18))
         {
             GPIOA->DOUT31_0 |= (1 << 0);
         }
